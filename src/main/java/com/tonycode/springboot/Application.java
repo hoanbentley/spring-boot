@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.*;
 import java.util.Optional;
+import java.util.Arrays;
 
 @SpringBootApplication
 @RestController
@@ -19,7 +21,23 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        //SpringApplication.run(Application.class, args);
+        algorithmsForBubbleSort();
+    }
+
+    public static void algorithmsForBubbleSort() {
+        int[] array = new int[]{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0};
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+        IntStream stream = Arrays.stream(array);
+        stream.forEach(str -> System.out.print(str + " "));
     }
 
     @GetMapping

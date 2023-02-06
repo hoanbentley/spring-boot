@@ -23,6 +23,8 @@ public class Application {
     public static void main(String[] args) {
         //SpringApplication.run(Application.class, args);
         algorithmsForBubbleSort();
+        System.out.println();
+        algorithmsForInsertionSort();
     }
 
     public static void algorithmsForBubbleSort() {
@@ -35,6 +37,22 @@ public class Application {
                     array[j + 1] = temp;
                 }
             }
+        }
+        IntStream stream = Arrays.stream(array);
+        stream.forEach(str -> System.out.print(str + " "));
+    }
+
+    public static void algorithmsForInsertionSort() {
+        int[] array = new int[]{12, 11, 13, 5, 6};
+        int n = array.length;
+        for (int i = 1; i < n; i++) {
+            int key = array[i];
+            int j = i - 1;
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            array[j + 1] = key;
         }
         IntStream stream = Arrays.stream(array);
         stream.forEach(str -> System.out.print(str + " "));

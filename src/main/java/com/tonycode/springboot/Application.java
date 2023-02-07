@@ -25,6 +25,8 @@ public class Application {
         algorithmsForBubbleSort();
         System.out.println();
         algorithmsForInsertionSort();
+        System.out.println();
+        algorithmsForSelectionSort();
     }
 
     public static void algorithmsForBubbleSort() {
@@ -43,7 +45,7 @@ public class Application {
     }
 
     public static void algorithmsForInsertionSort() {
-        int[] array = new int[]{12, 11, 13, 5, 6};
+        int[] array = new int[]{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0};
         int n = array.length;
         for (int i = 1; i < n; i++) {
             int key = array[i];
@@ -54,6 +56,25 @@ public class Application {
             }
             array[j + 1] = key;
         }
+        IntStream stream = Arrays.stream(array);
+        stream.forEach(str -> System.out.print(str + " "));
+    }
+
+    public static void algorithmsForSelectionSort() {
+        int[] array = new int[]{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0};
+        int n = array.length;
+        for (int i = 0; i < n; i++) {
+            int min = i;
+            int temp = array[i];
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+            array[i] = array[min];
+            array[min] = temp;
+        }
+
         IntStream stream = Arrays.stream(array);
         stream.forEach(str -> System.out.print(str + " "));
     }

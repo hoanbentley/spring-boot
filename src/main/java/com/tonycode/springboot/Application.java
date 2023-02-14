@@ -27,6 +27,8 @@ public class Application {
         algorithmsForInsertionSort();
         System.out.println();
         algorithmsForSelectionSort();
+        System.out.println();
+        algorithmsForMergeSort();
     }
 
     public static void algorithmsForBubbleSort() {
@@ -77,6 +79,52 @@ public class Application {
 
         IntStream stream = Arrays.stream(array);
         stream.forEach(str -> System.out.print(str + " "));
+    }
+
+    public static void algorithmsForMergeSort() {
+        int[] array = new int[]{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0};
+        int n = array.length;
+        mergeSort(array, n);
+        IntStream stream = Arrays.stream(array);
+        stream.forEach(str -> System.out.print(str + " "));
+    }
+
+    public static void mergeSort(int[] array, int n) {
+        if (n < 2) {
+            return;
+        }
+
+        int mid = n / 2;
+        int[] l = new int[mid];
+        int[] r = new int[n - mid];
+
+        for (int i = 0; i < mid; i++) {
+            l[i] = array[i];
+        }
+        for (int i = mid; i < n; i++) {
+            r[i - mid] = array[i];
+        }
+
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
+        merge(array, l, r, mid, n - mid);
+    }
+
+    public static void merge(int[] a, int[] l, int[] r, int left, int right) {
+        int i = 0, j = 0, k = 0;
+        while (i < left && j < right) {
+            if (l[i] <= r[j]) {
+                a[k++] = l[i++];
+            } else {
+                a[k++] = r[j++];
+            }
+        }
+        while (i < left) {
+            a[k++] = l[i++];
+        }
+        while (j < right) {
+            a[k++] = r[j++];
+        }
     }
 
     @GetMapping
